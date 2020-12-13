@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hand Project </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,500;0,600;0,700;0,900;1,200;1,300;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class = 'main'>
+
+        <div id = 'select'>
+            <p class = 'label'>
+                Hand
+            </p>
+            <select id="hand">
+                <option value="jacob">Jacob Yoon</option>
+                <option value="heewon">Heewon Ahn</option>
+                <option value="jack">Jack Frazier</option>
+                <option value="benigno">Benigno McKain</option>
+            </select>
+            <p class = 'label'>
+                Image Size
+            </p>
+            <select id="size">
+                <option value="512">512px</option>
+                <option value="2048" selected>2048px</option>
+                <option value="4096">4096px</option>
+            </select>
+            <button id = 'calculate'> Calculate </button>
+        </div>
+        <div id = 'display'>
+            <canvas id = 'canvas'> </canvas>
+            <canvas id = 'effects'> </canvas>
+        </div>
+
+        <p id = 'log'>
+            Loading...
+        </p>
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+</html>
