@@ -11,12 +11,10 @@ CalcButton.onclick = Calculate
 
 // Variables
 let image = new Image()
-let center, ratio;
+let center, ratio, rawWidth, factor, display;
 let width = Apply()
 let ScanHeight = 0
 let Scanning = false
-const rawWidth = 21.575;
-let factor = (rawWidth / width)**2;
 let RESULT;
 
 
@@ -32,13 +30,27 @@ FUNCTIONS
 
 function Resize(){
     width = parseInt(Apply())
-    ratio = canvas.width/4200
-    factor = (rawWidth / width)**2;
+    ratio = (display/width)**2
     canvas.width = window.innerWidth/2
     canvas.height = window.innerWidth/2
     effects.width = canvas.width
     effects.height = canvas.height
     center = canvas.width/2
+    display = canvas.width*0.7
+
+    switch(document.getElementById("hand").value){
+        case 'jacob':
+            rawWidth = 19.6;
+            break;
+        case 'benigno':
+            rawWidth = 21.0;
+            break;
+        default:
+            rawWidth = 20;
+            break;
+    }
+
+    factor = (rawWidth / width)**2;
 }
 
 function Log(arg){
@@ -63,20 +75,18 @@ function Apply(){
 function Calculate() {
 
     Scanning = true
-    var imgData = ctx.getImageData(0, 0, width, width);
+    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.width);
     var data = imgData.data;
     var sum = 0;
 
     for (let i = 0; i < data.length; i += 4) {
-        const alpha = data[i + 3];
+        let alpha = data[i + 3];
         if (alpha > 100) {
             sum++;
         }
 
     }
-    if (!Scanning){
 
-    }
 
     Log
     (
@@ -85,16 +95,18 @@ function Calculate() {
 
     RESULT =
     `
-        Scale Factor: <span> ${(factor/(ratio**2)).toFixed(5)} cm<sup>2</sup>/px </span>
+        Image Width: <span> ${rawWidth} cm </span> <br>
+        Image Width: <span> ${width} px </span> <br>
         <br>
+        Pixel Density: <span> ${(factor).toFixed(3)} cm<sup>2</sup>/px </span> <br>
         <br>
-        Hand Area: <span> ${(sum/(ratio**2)).toFixed(3)} px</span>
+        Display Width: <span> ${display.toFixed(3)} px </span> <br>
+        Scale Factor: <span> ${ratio.toFixed(3)} </span> <br>
         <br>
-        Hand Area: <span> ${((sum/(ratio**2))* factor/6.452).toFixed(3)} in<sup>2</sup> <span>
+        Hand Area: <span> ${(sum/ratio).toFixed(3)} px</span> <br>
+        Hand Area: <span> ${(sum*factor/ratio/6.4516).toFixed(3)} in<sup>2</sup> <span> <br>
         <br>
-        <br>
-        Hand Area: <span class = 'gold'> ${((sum/(ratio**2))* factor).toFixed(3)} cm<sup>2</sup> <span>
-        <br>
+        Hand Area: <span class = 'gold'> ${(sum*factor/ratio).toFixed(3)} cm<sup>2</sup> <span> <br>
     `
 
 }
@@ -125,7 +137,7 @@ const loop = () => {
 
         vfx.globalAlpha = 0.1
         vfx.fillStyle = 'blue'
-        vfx.fillRect(center-width*ratio/2, center-width*ratio/2, width*ratio, width*ratio)
+        vfx.fillRect(center-display/2, center-display/2, display, display)
         vfx.globalAlpha = 1
 
         if (ScanHeight == canvas.width){
@@ -138,18 +150,23 @@ const loop = () => {
 
         vfx.globalAlpha = 0.3
         vfx.fillStyle = 'red'
-        if (canvas.width-ScanHeight < center+width*ratio/2 && canvas.width-ScanHeight > center-width*ratio/2){
-            vfx.fillRect(center-width*ratio/2, canvas.width-ScanHeight, width*ratio,(center+width*ratio/2)-(canvas.width-ScanHeight))
+        if (canvas.width-ScanHeight < center+display/2 && canvas.width-ScanHeight > center-display/2){
+            vfx.fillRect(center-display/2, canvas.width-ScanHeight, display, (center+display/2)-(canvas.width-ScanHeight))
 
         }
 
-        if (canvas.width-ScanHeight < center-width*ratio/2){
-            vfx.fillRect(center-width*ratio/2, center-width*ratio/2, width*ratio, width*ratio)
+        if (canvas.width-ScanHeight < center-display/2){
+            vfx.fillRect(center-display/2, center-display/2, display, display)
         }
+
         vfx.globalAlpha = 1
     }
 
-    ctx.drawImage(image, center-width*ratio/2, center-width*ratio/2, width*ratio, width*ratio)
+    //ctx.drawImage(image, center-width*ratio/2, center-width*ratio/2, width*ratio, width*ratio)
+
+ //   ctx.drawImage(image, center/2, center/2, center, center)
+
+    ctx.drawImage(image, center-display/2, center-display/2, display, display)
 
     window.requestAnimationFrame(loop)
 }

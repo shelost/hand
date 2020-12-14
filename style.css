@@ -2,6 +2,70 @@ body {
   font-family: "Source Code Pro", "Courier New", monospace;
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.header .mast {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 10px;
+}
+
+.header .mast h1 {
+  font-size: 48px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.header .mast h3 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 400;
+}
+
+.header #nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header #nav h2 {
+  margin-right: 20px;
+  font-size: 26px;
+  color: rgba(0, 0, 0, 0.4);
+  -webkit-transition: 0.2s ease;
+  transition: 0.2s ease;
+}
+
+.header #nav h2.selected {
+  color: black;
+}
+
+.header #nav h2:hover {
+  color: black;
+}
+
 .main {
   background-color: rgba(0, 0, 0, 0.1);
   display: -webkit-box;
@@ -21,6 +85,7 @@ body {
 
 #canvas {
   border-radius: 8px;
+  background-color: white;
 }
 
 #effects {
@@ -106,5 +171,38 @@ body {
 
 #select #calculate:hover {
   background-color: #153ef5;
+}
+
+.about {
+  width: 98vw;
+  padding-top: 30px;
+  padding-bottom: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about p {
+  width: 50%;
+}
+
+.about pre {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+}
+
+.about pre span {
+  color: #19ce74;
 }
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hand Project </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,500;0,600;0,700;0,900;1,200;1,300;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class = 'header'>
+        <div class = 'mast'>
+            <h1> Hand Project</h1>
+            <h3> Jacob Yoon • Heewon Ahn • Jack Frazier • Benigno McKain </h3>
+        </div>
+        <div id = 'nav'>
+            <a href = 'index.html'>
+                <h2> Home </h2>
+            </a>
+            <a href = 'about.html'>
+                <h2 class = 'selected'> About </h2>
+            </a>
+            <a href = 'analysis.html'>
+                <h2> Analysis </h2>
+            </a>
+        </div>
+    </div>
+
+    <div class = 'about'>
+
+        <p>
+            This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff.
+        </p>
+
+        <pre>
+        <code>
+function Calculate() {
+
+    <span>// Returns an array of RGB values per pixel </span>
+
+    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.width);
+    var data = imgData.data;
+    var sum = 0;
+
+   <span> // Loop through each individual pixel & check its opacity </span>
+
+    for (let i = 0; i  data.length; i += 4) {
+        let alpha = data[i + 3];
+        if (alpha > 100) {
+            sum++;
+        }
+
+    }
+
+    return sum;
+
+}
+        </code>
+        </pre>
+
+        <p>
+            This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff.
+        </p>
+
+        <pre>
+        <code>
+<span>// Initialize HTML Canvas element </span>
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d')
+
+ctx.drawImage(image, center-display/2, center-display/2, display, display)
+
+<span>// Define variables </span>
+
+function Resize(){
+
+    width = parseInt(Apply())
+    ratio = (display/width)**2
+    canvas.width = window.innerWidth/2
+    canvas.height = window.innerWidth/2
+    center = canvas.width/2
+
+    <span>// Display width </span>
+
+    display = canvas.width*0.7
+
+    <span>// Pixel density </span>
+
+    factor = (rawWidth / width)**2;
+}
+        </code>
+        </pre>
+
+
+
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+</html>
