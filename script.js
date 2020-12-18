@@ -9,6 +9,8 @@ const CalcButton = document.getElementById('calculate')
 const LogBox = document.getElementById('log')
 CalcButton.onclick = Calculate
 
+ctx.imageSmoothingEnabled = false
+
 // Variables
 let image = new Image()
 let center, ratio, rawWidth, factor, display;
@@ -103,7 +105,7 @@ function Calculate() {
         Display Width: <span> ${display.toFixed(3)} px </span> <br>
         Scale Factor: <span> ${ratio.toFixed(3)} </span> <br>
         <br>
-        Hand Area: <span> ${(sum/ratio).toFixed(3)} px</span> <br>
+        Hand Area: <span> ${(sum/ratio).toFixed(0)} px</span> <br>
         Hand Area: <span> ${(sum*factor/ratio/6.4516).toFixed(3)} in<sup>2</sup> <span> <br>
         <br>
         Hand Area: <span class = 'gold'> ${(sum*factor/ratio).toFixed(3)} cm<sup>2</sup> <span> <br>
@@ -125,7 +127,7 @@ const loop = () => {
 
     if (Scanning){
 
-        ScanHeight += 8
+        ScanHeight += canvas.width/100
 
         vfx.strokeStyle = 'red'
         vfx.lineWidth = 5
@@ -140,7 +142,7 @@ const loop = () => {
         vfx.fillRect(center-display/2, center-display/2, display, display)
         vfx.globalAlpha = 1
 
-        if (ScanHeight == canvas.width){
+        if (ScanHeight > canvas.width){
             Scanning = false;
             Log(RESULT)
             setTimeout(()=>{

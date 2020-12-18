@@ -20,7 +20,7 @@
                 <h2> Home </h2>
             </a>
             <a href = 'about.html'>
-                <h2 class = 'selected'> About </h2>
+                <h2 class = 'selected'> Explanation </h2>
             </a>
             <a href = 'analysis.html'>
                 <h2> Analysis </h2>
@@ -28,50 +28,28 @@
         </div>
     </div>
 
-    <div class = 'about'>
+    <h1 class = 'title'> Explanation </h1>
 
-        <p>
-            This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff.
-        </p>
+<div class = 'about'>
 
-        <pre>
-        <code>
-function Calculate() {
+    <p>
+        For the purposes of this project, we're using the <b> HTML Canvas Element </b>to draw and analyze our image.
+        This element allows us to display visual data and retrive data on individual pixels.
+    </p>
 
-    <span>// Returns an array of RGB values per pixel </span>
+    <p>
+        In order to guarantee that this website will function properly on a variety of screen sizes, we must define
+        a <b> Resize() </b> function. This portion of code essentially establishes a relationship between the dimensions
+        of our actual images and the screen size of whatever device this site is being viewed on.
+    </p>
 
-    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.width);
-    var data = imgData.data;
-    var sum = 0;
-
-   <span> // Loop through each individual pixel & check its opacity </span>
-
-    for (let i = 0; i  data.length; i += 4) {
-        let alpha = data[i + 3];
-        if (alpha > 100) {
-            sum++;
-        }
-
-    }
-
-    return sum;
-
-}
-        </code>
-        </pre>
-
-        <p>
-            This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff. This is an explanation of all the code stuff.
-        </p>
-
-        <pre>
-        <code>
+<!---->
+<pre>
+<code>
 <span>// Initialize HTML Canvas element </span>
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d')
-
-ctx.drawImage(image, center-display/2, center-display/2, display, display)
 
 <span>// Define variables </span>
 
@@ -91,12 +69,117 @@ function Resize(){
 
     factor = (rawWidth / width)**2;
 }
-        </code>
-        </pre>
+</code>
+</pre>
+<!---->
+
+    <p>
+        Next, we must import and draw the images of our hands. In order to analyze pixel data in calculating the areas of our hands,
+        we opted to convert said images into silhouette form using Adobe Illustrator.
+    </p>
+
+    <p>
+        The code below retrieves the files of our hand images and draws them onto the canvas.
+    </p>
+
+<!---->
+<pre>
+<code>
+<span>// Import and draw image </span>
+
+let image = new Image()
+image.src = `img/${handValue}-${sizeValue}.png`
+
+ctx.drawImage(image, center-display/2, center-display/2, display, display)
+
+</code>
+</pre>
+<!---->
+
+    <p>
+        Now to the main event - the <b> Calculate() </b> function loops through every individual pixel of the canvas
+        and returns an <b> alpha </b> (i.e. opacity) value for each one. If the <b> alpha </b> value is over a certain threshold
+        (100, for the purposes of this project), then it is counted toward the total area of the hand.
+    </p>
+
+<!---->
+<pre>
+<code>
+function Calculate() {
+
+    <span>// Returns an array of RGBA values per pixel </span>
+
+    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.width);
+    var data = imgData.data;
+    var sum = 0;
+
+   <span> // Loop through each individual pixel & check its opacity </span>
+
+    for (let i = 0; i  data.length; i += 4) {
+        let alpha = data[i + 3];
+        if (alpha > 100) {
+            sum++;
+        }
+
+    }
+
+    return sum;
+
+}
+
+</code>
+</pre>
+<!---->
+
+    <p>
+        Now, all that's left is to interpret the data returned to us by the <b> Calculate() </b> function.
+    </p>
+
+    <p>
+        The total hand area in PIXELS can be found by simply dividing the total number of "active" pixels
+        by the scale factor of the canvas, as was defined in the previous <b> Resize()</b> function.
+    </p>
+
+    <p>
+        The total hand area in CENTIMETERS can be found multiplying the pixel-based area by the pixel density
+        of the display canvas, which had already been defined in terms of cm in the <b> Resize() </b> function.
+        Most of our images were 20 cm wide in real-world terms, a fact which was accordingly taken into account
+        with the <b> rawWidth </b> variable.
+    </p>
+
+    <p>
+        The total hand area in INCHES can be found by dividing the centimeter-based area by the square of 2.54,
+        the number of centimeters in an inch.
+    </p>
 
 
+<!---->
+<pre>
+<code>
+<span>// <i>factor</i>, <i>ratio</i> and <i>sum</i> are defined in Resize()</span>
 
-    </div>
+PixelDensity = factor
+ScaleFactor = ratio
+
+AreaPX = sum/ratio
+AreaIN = (sum*factor)/(ratio*6.4516)
+
+AreaCM = sum*factor/ratio
+
+</code>
+</pre>
+<!---->
+
+<p>
+    And that's it!
+</p>
+
+<p>
+    - Heewon, Jacob, Jack, Benigno
+</p>
+
+
+</div>
 
 </body>
 

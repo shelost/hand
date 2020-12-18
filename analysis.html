@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Hand Project </title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,500;0,600;0,700;0,900;1,200;1,300;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class = 'header'>
+        <div class = 'mast'>
+            <h1> Hand Project</h1>
+            <h3> Jacob Yoon • Heewon Ahn • Jack Frazier • Benigno McKain </h3>
+        </div>
+        <div id = 'nav'>
+            <a href = 'index.html'>
+                <h2> Home </h2>
+            </a>
+            <a href = 'about.html'>
+                <h2> Explanation </h2>
+            </a>
+            <a href = 'analysis.html'>
+                <h2 class = 'selected'> Analysis </h2>
+            </a>
+        </div>
+    </div>
+
+    <h1 class = 'title'> Error Analysis </h1>
+
+<div class = 'about'>
+
+    <p class = 'eq'>
+        Relative Error = Absolute Error / Expected Value
+    </p>
+
+    <p>
+        Since we do not know the true areas of our hands, our <b> Absolute Error </b> must be defined as the smallest
+        increment of precision available to our method. In our case, our method is precise down to the individual pixel.
+    </p>
+
+    <p>
+        Likewise, since we do not know the true areas of our hands, our <b> Expected Value </b> can be best approximated
+        with our <b> Observed Value</b>, as no other measurement is available to us.
+    </p>
+
+    <p class = 'eq'>
+        Relative Error = <b> 1px / ( Observed area in pixels )</b>
+    </p>
+
+    <p>
+        With this new formula, we now have a methodology by which we can calculate the relative errors of our results.
+    </p>
+
+    <p>
+        Due to the extreme pixel-by-pixel precision of our method, all of our relative error values are well below 1%.
+    </p>
+
+    <div class = 'sec'>
+        <img src = 'img/heewon-2048.png'>
+        <div class = 'expo'>
+            <p class = 'name'>
+                Heewon Ahn
+            </p>
+            <p class = 'eq'>
+                Relative Error = 1px / 1600488px = <b> 6.246e-7</b>
+            </p>
+            <p class = 'ans'>
+                0.00006248%
+            </p>
+        </div>
+    </div>
+
+    <div class = 'sec'>
+        <img src = 'img/jacob-2048.png'>
+        <div class = 'expo'>
+            <p class = 'name'>
+                Jacob Yoon
+            </p>
+            <p class = 'eq'>
+                Relative Error = 1px / 1615332px = <b> 6.190e-7</b>
+            </p>
+            <p class = 'ans'>
+                0.00006190%
+            </p>
+        </div>
+    </div>
+
+    <div class = 'sec'>
+        <img src = 'img/benigno-2048.png'>
+        <div class = 'expo'>
+            <p class = 'name'>
+                Benigno McKain
+            </p>
+            <p class = 'eq'>
+                Relative Error = 1px / 1558597px = <b> 6.412e-7</b>
+            </p>
+            <p class = 'ans'>
+                0.00006412%
+            </p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<script src="script.js"></script>
+</html>
